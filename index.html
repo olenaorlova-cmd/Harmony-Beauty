@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Harmony — Beauty Studio</title>
+  <meta name="description" content="Harmony Beauty Studio. Expert skincare, bespoke rituals, brows & lashes, makeup. Book your appointment and let your natural beauty shine." />
+  <style>
+    :root{
+      --bg: #E1DCD9;
+      --panel: #ffffff;
+      --muted:#737373;
+      --text:#535456;
+      --accent:#CABD9B; /* brand accent */
+      --accent-2:#B49F78; /* keep same to avoid harsh gradient */
+      --ring: rgba(202,189,155,.35);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --maxw: 1100px;
+      --hero-bg: url('images/background.jpg');
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);
+         color:var(--text);font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:0 20px}
+    /* NAV */
+    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:rgba(255,255,255,.8);border-bottom:1px solid #C6C6C6;z-index:1000}
+    .nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:14px 0;column-gap:32px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo{position:relative;display:block;width:40px;height:40px;border-radius:8px;background: linear-gradient(135deg,var(--accent), #c6c6c6);box-shadow:0 6px 20px var(--ring);overflow:hidden}
+    .logo.has-img{background:transparent;box-shadow:none;border-radius:0}
+    .logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+    .logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+    nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;justify-content:center}
+    nav a{opacity:.9}
+    nav a:hover{opacity:1}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background: var(--accent);
+         color:white;font-weight:600;box-shadow:0 0 24px 0 var(--ring);border:0;cursor:pointer}
+    .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
+    .btn:hover{background:linear-gradient(135deg,var(--accent),var(--accent-2));transform:translateY(-1px);box-shadow:0 12px 24px var(--ring)}
+    .btn:active{transform:none;box-shadow:0 6px 14px rgba(0,0,0,.08)}
+    .btn.ghost:hover{background:rgba(0,0,0,.04)}
+    .hero.has-bg .btn.ghost:hover{background:rgba(255,255,255,.22);}
+    .btn.ghost{background:transparent;border:1px solid #C6C6C6;color:var(--text);box-shadow:none}
+    /* HERO */
+    .hero{padding:120px 0 90px}
+    .hero.has-bg{background-image:linear-gradient(to bottom, rgba(2,6,23,.55), rgba(2,6,23,.35)), var(--hero-bg, url('images/background.jpg'));background-size:cover;background-position:center;background-repeat:no-repeat;border-bottom:1px solid #C6C6C6;min-height:60vh} 
+    .hero.has-bg .h1{color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+    .hero.has-bg .lead{color:#C6C6C6}
+    .hero.has-bg .badge{color:#f3f4f6;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.12)}
+    .hero.has-bg .btn{background: var(--accent);box-shadow:0 12px 28px var(--ring)}
+    .hero.has-bg .btn.ghost{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.6);color:#fff} 
+    .hero.has-bg .h1{color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+    .hero.has-bg .lead{color:#C6C6C6}
+    .hero.has-bg .badge{color:#f3f4f6;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.12)}
+    .hero.has-bg .btn{background: var(--accent);box-shadow:0 12px 28px var(--ring)}
+    .hero.has-bg .btn.ghost{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.6);color:#fff}
+    .hero-inner{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #C6C6C6;border-radius:999px;color:var(--muted);font-size:14px}
+    .h1{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:14px 0 16px}
+    .lead{color:#535456;opacity:.9;max-width:60ch}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .card{background:var(--panel);border:1px solid #C6C6C6;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-card{padding:20px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    .stat{padding:14px;border-radius:12px;background:#f9fafb;border:1px solid #C6C6C6;text-align:center}
+    .stat b{font-size:20px;display:block}
+    /* SECTIONS */
+    section{padding:70px 0}
+    h2{font-size:clamp(26px,3.6vw,38px);margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    .service{padding:20px;display:flex;flex-direction:column}
+    .service h3{margin:8px 0 6px}
+    .icon{width:28px;height:28px;display:inline-block}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .panel{padding:22px}
+    /* PRICING */
+    .pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .price-card{padding:22px}
+    .price{font-size:28px;font-weight:700}
+    .price-card h3{margin:0 0 6px}
+    .price-card ul{margin:8px 0 0;padding-left:18px}
+    .price-card li{margin:6px 0}
+    .price-card.highlight{outline:2px solid var(--accent-2);box-shadow:0 0 0 6px rgba(180,159,120,.18)}
+    .price-card .package{margin-top:10px;padding-top:10px;border-top:1px dashed #C6C6C6}
+    .promo{padding:18px;border-radius:var(--radius);background:#DCD1B6;color:var(--text);text-align:center;box-shadow:0 0 24px 0 var(--ring);margin:16px 0 22px} 
+    .promo small{display:block;opacity:.9}
+    .promo small{display:block;opacity:.9}
+    .promo small{display:block;opacity:.9}
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+    .photo{padding:0;overflow:hidden;display:flex;flex-direction:column;height:auto}
+    .photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+    .photo figcaption{padding:10px 0 8px;color:var(--muted);font-size:14px;text-align:center;min-height:22px}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:2000}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    .lightbox .caption{margin-top:10px;text-align:center;color:#f5f5f5;opacity:.9}
+    .lightbox .close{position:absolute;top:20px;right:20px;background:#00000066;color:#fff;border:1px solid #ffffff33;border-radius:999px;width:40px;height:40px;font-size:22px;cursor:pointer}
+    /* BEFORE & AFTER */
+    .compare{position:relative;border:1px solid #C6C6C6;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;aspect-ratio:16/10;max-height:460px;background:#ddd;touch-action:none;cursor:ew-resize;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+    .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;user-select:none;pointer-events:none;z-index:0}
+    /* clip removed: use container width for reveal */
+    .compare .after{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .compare .after img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;clip-path:polygon(0 0, var(--pos,50%) 0, var(--pos,50%) 100%, 0 100%)}
+    .compare .handle{position:absolute;left:calc(var(--pos,50%) - 1px);top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);z-index:2}
+    .compare .handle::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;border:1px solid #C6C6C6;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.12);pointer-events:none}
+    
+    .compare .label{position:absolute;top:10px;padding:6px 10px;border-radius:999px;border:1px solid #C6C6C6;background:rgba(255,255,255,.9);color:var(--text);font-weight:600;font-size:14px;display:inline-flex;align-items:center;white-space:nowrap;height:auto;line-height:1;pointer-events:none;z-index:3;-webkit-user-select:none;user-select:none;width:auto;max-height:36px}
+    .compare .label.before{left:10px}
+    .compare .label.after{right:10px;left:auto;bottom:auto}
+    /* slider element removed; using pointer events for drag */
+    .compare .slider::-webkit-slider-thumb{-webkit-appearance:none;width:0;height:0}
+    .compare .slider::-moz-range-thumb{width:0;height:0;border:0}
+    .compare .slider::-ms-thumb{width:0;height:0;border:0}
+
+    /* SERVICE MODAL */
+    .view-details{display:inline-flex;align-items:center;gap:6px;margin-top:auto;align-self:flex-start;padding:10px 14px;border-radius:999px;border:1px solid #C6C6C6;background:transparent;color:var(--text);font-weight:600;cursor:pointer}
+    .view-details:hover{background:rgba(0,0,0,.04)}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:2300}
+    .modal.open{display:flex}
+    .modal .dialog{width:min(92vw,720px);background:var(--panel);border:1px solid #C6C6C6;border-radius:20px;box-shadow:var(--shadow);padding:22px 22px}
+    .modal .dialog h3{margin:0 0 8px}
+    .modal .dialog .close{position:absolute;top:14px;right:14px;border:1px solid #C6C6C6;background:#fff;border-radius:999px;width:36px;height:36px;cursor:pointer}
+    .modal .dialog .meta{color:var(--muted);margin-bottom:8px}
+    .modal .dialog .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+
+    /* MAP + CONTACT */
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+    .map-wrap{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid #C6C6C6;box-shadow:var(--shadow);align-self:start}
+    .map{position:relative;aspect-ratio:16/10;}
+    .map iframe, .map #gmap{position:absolute;inset:0;width:100%;height:100%;border:0}
+    form{display:grid;gap:12px}
+    input, textarea{background:#ffffff;border:1px solid #C6C6C6;color:var(--text);padding:12px 14px;border-radius:12px}
+    textarea{min-height:120px}
+    label{font-size:14px;color:var(--muted)}
+    /* FOOTER */
+    footer{border-top:1px solid #C6C6C6;color:#6b7280;padding:26px 0}
+    /* RESPONSIVE */
+    @media (max-width: 980px){
+      .hero-inner, .about, .contact{grid-template-columns:1fr}
+      .grid.cols-3, .grid.cols-4, .pricing, .team{grid-template-columns:1fr 1fr}
+    }
+    }
+    @media (max-width: 640px){
+      nav ul{display:none}
+      .grid.cols-3, .grid.cols-4, .pricing, .team{grid-template-columns:1fr}
+      .hero{padding-top:56px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Harmony Beauty Studio home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Harmony Beauty Studio</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="#contact">Book Now</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="hero has-bg">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">Beauty • Wellness • Confidence</span>
+        <h1 class="h1">Harmony Beauty Studio</h1>
+        <p class="lead">Expert skincare, bespoke rituals, and visible results.<br>At Harmony, we don’t just care for your skin — we bring back your inner harmony.</p>
+        <div class="cta">
+          <a class="btn" href="#pricing">See Prices</a>
+          <a class="btn ghost" href="#services">Explore Services</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <p class="muted">Expert care from head to toe. Choose a service or build a bespoke package.</p>
+      <div class="grid cols-4">
+        <article class="card service" aria-label="Skin rituals">
+          <span class="icon" aria-hidden="true">✨</span>
+          <h3>Skin Rituals</h3>
+          <p class="muted">For your healthiest, glowing skin.</p>
+          <p>Deep-cleansing facials, hydration & glow rituals, carboxy therapy, non-injectable biorevitalization.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Tailored facials and rituals to restore glow and balance. Ideal for dullness, dehydration and uneven texture.</p>
+            <ul>
+              <li>Deep‑cleansing facial</li>
+              <li>Hydration & glow ritual</li>
+              <li>Carboxy therapy</li>
+              <li>Non‑injectable biorevitalization</li>
+            </ul>
+            <p><strong>Duration:</strong> 45–75 min · <strong>Skin types:</strong> all, including sensitive.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Brows and lashes">
+          <span class="icon" aria-hidden="true">👁️</span>
+          <h3>Brows & Lashes</h3>
+          <p class="muted">Perfect frame for your eyes.</p>
+          <p>Brow shaping & tint, brow lamination. Lash lift & tint for flawless framing.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <ul>
+              <li><strong>Brow lamination</strong> + shaping & tint for sleek, fuller effect</li>
+              <li><strong>Lash lift & tint</strong> — natural curl and definition for 6–8 weeks</li>
+            </ul>
+            <p class="meta">Patch test recommended 24–48h in advance.</p>
+            <p><strong>Duration:</strong> 30–75 min · <strong>Maintenance:</strong> every 4–8 weeks.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Makeup services">
+          <span class="icon" aria-hidden="true">💄</span>
+          <h3>Makeup</h3>
+          <p class="muted">Beauty for every occasion.</p>
+          <p>Soft glam to editorial looks. Bridal, evening and occasion packages available.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Signature long‑wear looks tailored to your features and event.</p>
+            <ul>
+              <li>Day / Evening makeup</li>
+              <li>Bridal makeup (trial optional)</li>
+              <li>Occasion packages</li>
+            </ul>
+            <p><strong>Add‑ons:</strong> lashes, glow prep. <strong>Duration:</strong> 45–90 min.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Signature rituals">
+          <span class="icon" aria-hidden="true">🌟</span>
+          <h3>Signature Rituals</h3>
+          <p class="muted">Exclusive treatments, visible results.</p>
+          <p>Glow & Tone Ritual, LymphoLift Detox, Energy Scalp & Glow Combo — unique author’s treatments combining devices, massage & skincare.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <ul>
+              <li><strong>Glow & Tone</strong> — radiance + even tone</li>
+              <li><strong>LymphoLift Detox</strong> — drainage & lifting massage focus</li>
+              <li><strong>Energy Scalp & Glow Combo</strong> — scalp therapy + facial glow</li>
+            </ul>
+            <p><strong>Duration:</strong> 60–90 min · <strong>Results:</strong> instant glow, lighter contours.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Japanese Lifting Massage (Kobido)">
+          <span class="icon" aria-hidden="true">🪷</span>
+          <h3>Japanese Lifting Massage (Kobido)</h3>
+          <p class="muted">The art of natural rejuvenation.</p>
+          <p>Traditional Japanese facial massage for lifting, sculpting, drainage and deep relaxation.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Alternating deep, rhythmic and lymphatic techniques to tone facial muscles and boost microcirculation.</p>
+            <p><strong>Duration:</strong> 60 min single session · <strong>Course:</strong> 5–8 sessions for cumulative effect.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Endospheres Therapy">
+          <span class="icon" aria-hidden="true">🌀</span>
+          <h3>Endospheres Therapy</h3>
+          <p class="muted">Science meets beauty.</p>
+          <p>Microvibration therapy for face & body: lifting, drainage, body shaping and rejuvenation with proven results.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Patented compressive microvibration stimulates lymphatic flow and skin metabolism.</p>
+            <ul>
+              <li>Face: lifting & sculpting</li>
+              <li>Body: shaping & drainage</li>
+            </ul>
+            <p class="meta">Consultation advised. Not suitable for some conditions — we’ll guide you.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Advanced Care">
+          <span class="icon" aria-hidden="true">🔬</span>
+          <h3>Advanced Care</h3>
+          <p class="muted">Next level of skin regeneration.</p>
+          <p>BioLift Regeneration Ritual with polynucleotides, bespoke anti-aging protocols.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Regenerative protocols focused on tone, elasticity and texture using advanced actives and devices.</p>
+            <p><strong>Includes:</strong> BioLift with polynucleotides and tailored anti‑aging plans.</p>
+          </div>
+        </article>
+        <article class="card service" aria-label="Facial Cleansing">
+          <span class="icon" aria-hidden="true">🫧</span>
+          <h3>Facial Cleansing</h3>
+          <p class="muted">Clean, refined skin with a healthy glow.</p>
+          <p>A deep cleansing ritual to purify and refresh your skin. This treatment gently removes impurities, excess oil, and dead cells.</p>
+          <button class="view-details" type="button">View details</button>
+          <div class="details" hidden>
+            <p>Targeted detox and refinement. Customised for dry, combination or oily skin types.</p>
+            <ul>
+              <li>Classic cleansing</li>
+              <li>Relaxing massage + mask</li>
+              <li>Express glow option</li>
+            </ul>
+            <p><strong>Duration:</strong> 30–60 min · <strong>Finish:</strong> clean, balanced glow.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <div class="promo"><strong>Intro Offer:</strong> up to 20% OFF until <strong>01/12/25</strong>.</div>
+      <div class="pricing">
+        <div class="card price-card">
+          <h3>Skin Rituals</h3>
+          <ul>
+            <li>Deep-cleansing facial — €50 (reg. €55)</li>
+            <li>Hydration & glow ritual — €60–65</li>
+            <li>Carboxy therapy — €65</li>
+            <li>Non-injectable biorevitalization — €75–85</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Brows & Lashes</h3>
+          <ul>
+            <li>Brow shape & tint — €20–25</li>
+            <li>Brow lamination — €40–45</li>
+            <li>Lash lift & tint — €50–55</li>
+          </ul>
+          <p class="package">👉 Package: Brow lamination + Lash tint — €70</p>
+        </div>
+        <div class="card price-card">
+          <h3>Makeup</h3>
+          <ul>
+            <li>Day / Evening makeup — €40–45 (reg. €45–55)</li>
+            <li>Bridal makeup — €70–90</li>
+            <li>Occasion package (trial + wedding) — €120–150</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Signature Rituals</h3>
+          <ul>
+            <li>Glow & Tone Ritual — €55–60 (reg. €60–70)</li>
+            <li>LymphoLift Detox — €65–75</li>
+            <li>Energy Scalp & Glow Combo — €70–80</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Japanese Lifting Massage (Kobido)</h3>
+          <ul>
+            <li>Single session (60 min) — €65–75</li>
+            <li>Course (5–8 sessions) — from €300</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Endospheres Therapy</h3>
+          <ul>
+            <li>Face lifting & sculpting — €110</li>
+            <li>Body shaping & drainage — €95–100 (reg. €100–110)</li>
+            <li>Combo (face + body) — from €180</li>
+            <li>Packages (6–12 sessions) — from €550</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Advanced Care</h3>
+          <ul>
+            <li>BioLift Regeneration Ritual — €70 (reg. €75–85)</li>
+            <li>Course (4–6 sessions) — €280–300</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Facial Cleansing</h3>
+          <ul>
+            <li>Classic Facial Cleansing — €50</li>
+            <li>Relaxing Facial with Mask — €50</li>
+            <li>Express Facial (Quick Glow) — €40</li>
+            <li>Energy Scalp & Glow Combo — €80</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:12px">Prices include VAT. For courses & packages, final plan is tailored after consultation.</p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <!-- REVIEWS -->
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <p class="muted">A glimpse of our work and space.</p>
+      <div class="gallery">
+        <figure class="card photo">
+          <img src="images/gallery-photo01.jpg" alt="Makeup look" loading="lazy">
+          <figcaption>Makeup</figcaption>
+        </figure>
+        <figure class="card photo">
+          <img src="images/gallery-photo02.jpg" alt="Makeup look" loading="lazy">
+          <figcaption>Makeup</figcaption>
+        </figure>
+        <figure class="card photo">
+          <img src="images/gallery-photo03.jpg" alt="Eyelashes close-up" loading="lazy">
+          <figcaption>Eyelashes</figcaption>
+        </figure>
+        <figure class="card photo">
+          <img src="images/gallery-photo04.jpg" alt="Endospheres therapy in process" loading="lazy">
+          <figcaption>Endospheres</figcaption>
+        </figure>
+        <figure class="card photo">
+          <img src="images/gallery-photo05.jpg" alt="Studio interior" loading="lazy">
+          <figcaption>Studio</figcaption>
+        </figure>
+        <figure class="card photo">
+          <img src="images/gallery-photo06.jpg" alt="Studio corner" loading="lazy">
+          <figcaption>Studio</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE & AFTER -->
+  <section id="compare">
+    <div class="container">
+      <h2>Before & After</h2>
+      <p class="muted">Drag the slider to compare the result.</p>
+      <div class="compare" style="--pos:50%">
+        <img src="images/before-after-01-before.jpg" alt="Makeup — before">
+        <div class="after"><img src="images/before-after-01-after.jpg" alt="Makeup — after"></div>
+        <div class="label before">Before</div>
+        <div class="label after">After</div>
+        <div class="handle" aria-hidden="true"></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true"><div><img alt="Expanded view"><div class="caption" role="note"></div></div><button class="close" aria-label="Close">×</button></div>
+
+  <div id="serviceModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+    <div class="dialog" style="position:relative">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="serviceModalTitle" class="modal-title">Service</h3>
+      <div class="modal-body"></div>
+      <div class="modal-actions"><button class="btn" id="bookServiceBtn" type="button">Book this service</button></div>
+    </div>
+  </div>
+
+  <!-- CONTACT + MAP -->
+  <section id="contact">
+    <div class="container">
+      <h2>Find Us in Arklow</h2>
+      <p class="muted">Visit us at <strong>17 Lower Street, Arklow, Co. Wicklow</strong>. Tap the map or the button to open directions.</p>
+
+      <div class="contact">
+        <!-- Map (no API key required) -->
+        <div class="map-wrap" aria-label="Map">
+          <div class="map" role="region" aria-label="Map of Arklow, Ireland">
+            <iframe
+              title="Map — 17 Lower Street, Arklow"
+              src="https://www.google.com/maps?q=17%20Lower%20Street%2C%20Arklow%2C%20Ireland&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              aria-label="Google Map showing 17 Lower Street, Arklow, Ireland"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Contact + booking -->
+        <div class="card panel">
+          <h3>Contact</h3>
+          <p><strong>Harmony Beauty Studio</strong><br>17 Lower Street, Arklow, Co. Wicklow</p>
+          <p><a class="btn ghost" href="https://maps.google.com/?q=17%20Lower%20Street,%20Arklow,%20Ireland" target="_blank" rel="noopener">Open in Google Maps</a></p>
+          <hr style="border:none;border-top:1px solid #C6C6C6;margin:18px 0">
+          <p><strong>Call:</strong> <a href="tel:+353879848223">+353879848223</a><br>
+             <strong>Email:</strong> <a href="mailto:info@harmonybeauty.ie">info@harmonybeauty.ie</a></p>
+
+          <form id="bookingForm" aria-label="Quick booking request">
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Your full name" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you'd like to book"></textarea>
+            <button class="btn" type="submit">Request Booking</button>
+            <div class="muted" style="font-size:13px">This will open your email app to send the request to <strong>info@harmonybeauty.ie</strong>.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <span>© <span id="year"></span> Harmony. All rights reserved.</span>
+      <span class="muted">Made with care in Arklow.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Prefer WebP hero background if available
+    (function(){
+      var webp = 'images/background.webp';
+      var img = new Image();
+      img.onload = function(){
+        document.documentElement.style.setProperty('--hero-bg', "url('"+webp+"')");
+      };
+      img.src = webp;
+    })();
+    // Inject brand logo if file exists (tries SVG → PNG → WebP)
+    (function(){
+      var host = document.querySelector('.logo');
+      if(!host) return;
+      var candidates=['images/logo.svg','images/logo.png','images/logo.webp'];
+      (function load(i){
+        if(i>=candidates.length) return; // keep gradient fallback
+        var im=new Image();
+        im.onload=function(){ host.textContent=''; im.alt='Harmony Beauty Studio logo'; im.style.width='100%'; im.style.height='100%'; im.style.objectFit='contain'; host.classList.add('has-img'); host.appendChild(im); };
+        im.onerror=function(){ load(i+1); };
+        im.src=candidates[i];
+      })(0);
+    })();
+  
+    // Simple lightbox for gallery
+    (function(){
+      const lb = document.getElementById('lightbox');
+      if(!lb) return;
+      const imgEl = lb.querySelector('img');
+      const capEl = lb.querySelector('.caption');
+      document.querySelectorAll('.gallery .photo img').forEach(el=>{
+        el.style.cursor='zoom-in';
+        el.addEventListener('click',()=>{ 
+          imgEl.src = el.src; 
+          const cap = el.closest('figure')?.querySelector('figcaption')?.textContent || '';
+          if(capEl) capEl.textContent = cap;
+          lb.classList.add('open'); 
+          lb.setAttribute('aria-hidden','false'); 
+        });
+      });
+      lb.addEventListener('click', (e)=>{ if(e.target===lb || e.target.classList.contains('close')){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }});
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }});
+    })();
+  </script>
+
+  <script>
+    // Before/After compare slider (pure pointer drag)
+    (function(){
+      document.querySelectorAll('.compare').forEach(cmp=>{
+        function setPosByClientX(x){
+          const r = cmp.getBoundingClientRect();
+          const p = Math.max(0, Math.min(100, ((x - r.left) / r.width) * 100));
+          cmp.style.setProperty('--pos', p + '%');
+        }
+        cmp.addEventListener('pointerdown', e=>{ cmp.setPointerCapture(e.pointerId); setPosByClientX(e.clientX); });
+        cmp.addEventListener('pointermove', e=>{ if(e.pressure===0 && e.buttons===0) return; setPosByClientX(e.clientX); });
+        cmp.addEventListener('pointerup', e=>{ cmp.releasePointerCapture?.(e.pointerId); });
+      });
+    })();
+  </script>
+
+  <script>
+    // Simple booking (no backend): opens a prefilled email
+    (function(){
+      const form = document.getElementById('bookingForm');
+      if(!form) return;
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = (document.getElementById('name')?.value || '').trim();
+        const email = (document.getElementById('email')?.value || '').trim();
+        const msg = (document.getElementById('message')?.value || '').trim();
+
+        const subject = 'Booking request — Harmony Beauty Studio';
+        const body = [
+          'Hello Harmony Beauty Studio,',
+          '',
+          'I would like to request a booking.',
+          '',
+          `Name: ${name}`,
+          `Email: ${email}`,
+          '',
+          'Message:',
+          msg || '-',
+          '',
+          '— Sent from the website'
+        ].join('
+');
+
+        window.location.href = `mailto:info@harmonybeauty.ie?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    })();
+  </script>
+
+  <script>
+    // Service details modal logic + pricing highlight + prefilled booking CTA
+    (function(){
+      const modal = document.getElementById('serviceModal');
+      if(!modal) return;
+      const titleEl = modal.querySelector('.modal-title');
+      const bodyEl = modal.querySelector('.modal-body');
+      const closeBtn = modal.querySelector('.close');
+      const bookBtn = modal.querySelector('#bookServiceBtn');
+
+      function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+      function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); bodyEl.innerHTML=''; }
+
+      function highlightPricing(title){
+        document.querySelectorAll('.price-card').forEach(c=>c.classList.remove('highlight'));
+        const target = Array.from(document.querySelectorAll('.price-card h3')).find(h=>h.textContent.trim()===title.trim());
+        if(target){ target.closest('.price-card').classList.add('highlight'); }
+      }
+
+      function prefillAndScroll(title){
+        const textarea = document.getElementById('message');
+        if(textarea){
+          const base = `I'd like to book: ${title}. `;
+          if(!textarea.value || textarea.value.trim()==='') textarea.value = base;
+          else if(!textarea.value.includes(title)) textarea.value = base + textarea.value;
+        }
+        const contact = document.getElementById('contact');
+        contact && contact.scrollIntoView({behavior:'smooth'});
+        const panel = document.querySelector('#contact .panel');
+        if(panel){
+          const old = panel.style.boxShadow;
+          panel.style.boxShadow = '0 0 0 6px rgba(180,159,120,.18)';
+          setTimeout(()=>{ panel.style.boxShadow = old; }, 1300);
+        }
+      }
+
+      document.querySelectorAll('.service .view-details').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const card = btn.closest('.service');
+          const title = card.querySelector('h3').textContent;
+          const content = card.querySelector('.details');
+          titleEl.textContent = title;
+          bodyEl.innerHTML = content ? content.innerHTML : '';
+          highlightPricing(title);
+          bookBtn.onclick = function(){ close(); prefillAndScroll(title); };
+          open();
+        });
+      });
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', (e)=>{ if(e.target===modal){ close(); }});
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); }});
+    })();
+  </script>
+
+  <!-- Map uses a simple Google Maps embed above (no API key needed). -->
+  <!-- SEO structured data (address finalized later) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Harmony Beauty Studio",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "17 Lower Street",
+      "addressLocality": "Arklow",
+      "addressRegion": "Co. Wicklow",
+      "addressCountry": "IE"
+    },
+    "telephone": "+353879848223",
+    "email": "info@harmonybeauty.ie",
+    "areaServed": "Arklow, Co. Wicklow",
+    "url": "https://example.com"
+  }
+  </script>
+</body>
+</html>
